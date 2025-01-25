@@ -1,0 +1,9 @@
+{
+  "name": "Template Name",
+  "sections": {
+    "main": {
+      "type": "not-found"
+    }
+  },
+  "order": ["main"]
+}
