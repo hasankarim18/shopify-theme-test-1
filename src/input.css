@@ -1,9 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .my_mycontainer {
-    @apply max-w-7xl mx-auto my-0 bg-gray;
+  .my_container {
+    width: 100%;
+    max-width: 1280px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 0 auto;
   }
 }

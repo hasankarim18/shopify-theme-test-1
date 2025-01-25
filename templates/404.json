@@ -2,7 +2,19 @@
   "name": "Template Name",
   "sections": {
     "main": {
-      "type": "not-found"
+      "type": "not-found",
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "desc": {
+          "type": "description"
+        },
+        "givenlink": {
+          "type": "link"
+        }
+      },
+      "block_order": ["title", "desc", "givenlink"]
     }
   },
   "order": ["main"]
