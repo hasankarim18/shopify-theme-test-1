@@ -1,11 +1,130 @@
 <header>
   <div class="header py-4">
     <div class="my_container">
-      <div class="grid grid-cols-5">
+      <div class="grid grid-cols-5 relative">
         <div class="logo col-span-1">{{ shop.name }}</div>
-        <div class="flex justify-center col-span-3 items-center">main menu</div>
+        <div class="flex justify-center col-span-3 items-center">
+          <ul class=" flex justify-center items-center gap-4">
+            {% for link in section.settings.menu.links %}
+              <li>
+                <a class="link hover:link-neutral" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'mega_menu_1' %}
+                  <li data-mega-menu-trigger class="">
+
+                    <span class="link hover:link-neutral">
+                      {{ block.settings.mega_menu_1_title }}
+                    </span>
+                  </li>
+                  {% render 'mega-menu-1-content'
+                    , section: section
+                    , block: block %}
+                {% else %}
+                  <li class="hidden"></li>
+              {% endcase %}
+            {% endfor %}
+          </ul>
+        </div>
         <div class="icon-group col-span-1 flex justify-end items-center">icons</div>
       </div>
     </div>
   </div>
 </header>
+
+{% schema %}
+  {
+    "name": "Header Main",
+    "tag": "header",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Header Menu"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mega_menu_1",
+        "name": "Mega menu 1",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "text",
+            "id": "mega_menu_1_title",
+            "label": "Mega menu 1 title",
+            "default": "Mega menu 1 title"
+          },
+          {
+            "type": "header",
+            "content": "Menu 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "menu_1_image",
+            "label": "Select Image"
+          },
+          {
+            "type": "text",
+            "id": "menu_1_link_title",
+            "label": "Menu 1 link title",
+            "default": "Menu 1 link title"
+          },
+          {
+            "type": "url",
+            "id": "menu_1_link_url",
+            "label": "Menu 1 link url"
+
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Header Main",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const megaMenuTriggers = document.querySelectorAll('[data-mega-menu-trigger]');
+  
+    megaMenuTriggers.forEach((trigger) => {
+        // Add hover functionality
+        trigger.addEventListener('mouseover', () => {
+            // Find the associated menu (assumes it's the next sibling)
+            const associatedMenu = trigger.nextElementSibling;
+  
+            if (associatedMenu) {
+                associatedMenu.classList.remove('hidden'); // Show the menu
+            }
+        });
+  
+        trigger.addEventListener('mouseout', () => {
+            // Find the associated menu (assumes it's the next sibling)
+            const associatedMenu = trigger.nextElementSibling;
+  
+            if (associatedMenu) {
+                associatedMenu.classList.add('hidden'); // Hide the menu
+            }
+        });
+  
+        // Ensure the menu hides when the user leaves the menu area
+        const associatedMenu = trigger.nextElementSibling;
+        if (associatedMenu) {
+            associatedMenu.addEventListener('mouseover', () => {
+                associatedMenu.classList.remove('hidden'); // Keep it visible
+            });
+  
+            associatedMenu.addEventListener('mouseout', () => {
+                associatedMenu.classList.add('hidden'); // Hide it when the mouse leaves
+            });
+        }
+    });
+  });
+</script>

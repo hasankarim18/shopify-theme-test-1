@@ -13,7 +13,24 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {}
+      "settings": {
+        "menu": "main-menu"
+      },
+      "blocks": {
+        "mega_menu_1": {
+          "type": "mega_menu_1",
+          "settings": {
+            "mega_menu_1_title": "Mega menu 1 title"
+          }
+        },
+        "mega_menu_1_repeat": {
+          "type": "mega_menu_1",
+          "settings": {
+            "mega_menu_1_title": "Mega menu 1 repeat"
+          }
+        }
+      },
+      "block_order": ["mega_menu_1", "mega_menu_1_repeat"]
     }
   },
   "order": ["header"]
