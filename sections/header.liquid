@@ -59,24 +59,69 @@
           },
           {
             "type": "header",
-            "content": "Menu 1"
+            "content": "Slot 1"
           },
           {
             "type": "image_picker",
-            "id": "menu_1_image",
+            "id": "slot_1_image",
             "label": "Select Image"
           },
           {
             "type": "text",
-            "id": "menu_1_link_title",
-            "label": "Menu 1 link title",
-            "default": "Menu 1 link title"
+            "id": "slot_1_link_title",
+            "label": "Slot 1 link title",
+            "default": "Slot 1 link title"
           },
           {
             "type": "url",
             "id": "menu_1_link_url",
             "label": "Menu 1 link url"
 
+          },
+          {
+            "type": "header",
+            "content": "Slot 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "slot_2_image",
+            "label": "Select Image"
+          },
+          {
+            "type": "text",
+            "id": "slot_2_link_title",
+            "label": "Slot 2 link title",
+            "default": "Slot 2 link title"
+          },
+          {
+            "type": "url",
+            "id": "menu_2_link_url",
+            "label": "Menu 2 link url"
+          },
+          {
+            "type": "header",
+            "content": "Slot 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "slot_3_image",
+            "label": "Select Image"
+          },
+          {
+            "type": "text",
+            "id": "slot_3_link_title",
+            "label": "Slot 3 link title",
+            "default": "Slot 3 link title"
+          },
+          {
+            "type": "url",
+            "id": "menu_3_link_url",
+            "label": "Menu 3 link url"
+          },
+          {
+            "type": "product",
+            "id": "mega_menu_1_product",
+            "label": "Select a menu featured product"
           }
         ]
       }
@@ -90,6 +135,13 @@
   }
 {% endschema %}
 
+<style>
+  .mega_menu_top_100 {
+    top: 100%;
+  }
+
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const megaMenuTriggers = document.querySelectorAll('[data-mega-menu-trigger]');
@@ -102,6 +154,9 @@
   
             if (associatedMenu) {
                 associatedMenu.classList.remove('hidden'); // Show the menu
+                setTimeout(() => {
+                  associatedMenu.classList.add('mega_menu_top_100')
+                }, 10);
             }
         });
   
@@ -111,6 +166,7 @@
   
             if (associatedMenu) {
                 associatedMenu.classList.add('hidden'); // Hide the menu
+                associatedMenu.classList.remove('mega_menu_top_100')
             }
         });
   
