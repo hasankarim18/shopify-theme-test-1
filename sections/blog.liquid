@@ -11,19 +11,21 @@
     <span></span>
   </div>
   <div class=" grid grid-cols-1 md:grid-cols-4 py-8">
-    <div class="features col-span-1 order-last md:order-first ">features</div>
+    <div class="features col-span-1 order-last md:order-first ">
+      {% render 'blog-features' %}
+    </div>
     <div class="blog col-span-1 md:col-span-3 ">
 
       <div class="featured_article">
         <a href="{{featured_article.url }}">
-          <div class="flex justify-start items-center gap-4 mb-4">
+          <div class="flex justify-start items-center gap-4 flex-col md:flex-row mb-4">
             <span class="badge badge-lg rounded-none badge-accent badge-outline capitalize">featured</span>
             <h2 class="text-3xl capitalize">
               {{ featured_article.title }}</h2>
           </div>
-          <div class="text-gray-500 block mb-4">{{ featured_article.content | truncate: 200 }}</div>
+          <div class="text-gray-500 block mb-4 text-center md:text-left  ">{{ featured_article.content | truncate: 200 }}</div>
           {% comment %} detail {% endcomment %}
-          <div class="mb-2 flex text-gray-400 gap-4 justify-start items-center italic ">
+          <div class="mb-2 flex flex-col md:flex-row text-gray-400 gap-4 justify-start items-center italic ">
             <span class="text-gray-400">
               On
               {{ featured_article.published_at | date: "%b %d, %y" }}
@@ -32,7 +34,7 @@
               <span class="text-gray-400">by</span>
               <span class="text-gray-800 font-semibold">{{ featured_article.author }}</span>
             </span>
-            <span>
+            <span class="hidden md:inline-block">
               /
             </span>
             <span class="text-gray-400">
@@ -44,7 +46,7 @@
               src="{{ featured_article.image | image_url}}"
               width=""
               height=""
-              class="w-full h-[60vh] zoom_hover"
+              class="w-full h-full zoom_hover"
               alt="">
           </div>
         </a>
@@ -53,8 +55,8 @@
         <ul class="">
           {%- paginate blog.articles by 2 -%}
             {% for article in blog.articles %}
-              <li>
-                {{ article.title }}
+              <li class="mb-6">
+                {% render 'blog-card' article: article %}
               </li>
             {% endfor %}
             <div class="default_pagination_container">
@@ -79,7 +81,19 @@
         "id": "featured_article",
         "label": "Select Default Article"
       }
-
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Feature Products"
+          }
+        ]
+      }
     ],
     "presets": [
       {
