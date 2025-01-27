@@ -4,16 +4,17 @@
 
 <div class="my_container">
   <div>
-    <span>Home </span>
+    <span>Home
+    </span>
     /
     <span>{{ blog.title }}</span>
     <span></span>
   </div>
-  <div class=" grid grid-cols-1 md:grid-cols-4 py-8">
-    <div class="features col-span-1 order-last md:order-first ">
-      {% render 'blog-features' %}
+  <div class=" grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5 py-8">
+    <div class="features col-span-1 order-last md:order-first lg:order-first  ">
+      {% render 'blog-features' section: section %}
     </div>
-    <div class="blog col-span-1 md:col-span-3 ">
+    <div class="blog col-span-1 md:col-span-3 lg:col-span-4 ">
       <div class="featured_article">
         <a href="{{featured_article.url }}">
           <div class="flex justify-start items-center gap-4 flex-col md:flex-row mb-4">
@@ -35,8 +36,12 @@
               <span class="text-gray-400">by</span>
               <span class="text-gray-800 font-semibold">{{ featured_article.author }}</span>
             </span>
-            <span class="hidden md:inline-block"> / </span>
-            <span class="text-gray-400"> {{ featured_article.comments.size }} comments </span>
+            <span class="hidden md:inline-block">
+              /
+            </span>
+            <span class="text-gray-400">
+              {{ featured_article.comments.size }} comments
+            </span>
           </div>
           <div class=" overflow-hidden mb-4">
             <img
@@ -44,8 +49,7 @@
               width=""
               height=""
               class="w-full h-full zoom_hover"
-              alt=""
-            >
+              alt="">
           </div>
         </a>
       </div>
@@ -53,8 +57,9 @@
         <ul class="">
           {%- paginate blog.articles by 4 -%}
             {% for article in blog.articles %}
-              <li class="mb-6">
-                {% render 'blog-card', article: article %}
+              <li class="mb-10">
+                {% render 'blog-card'
+                  , article: article %}
               </li>
             {% endfor %}
             <div class="default_pagination_container">
@@ -68,34 +73,34 @@
 </div>
 
 {% schema %}
-{
-  "name": "Main blog",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "article",
-      "id": "featured_article",
-      "label": "Select Default Article"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "product",
-      "name": "Product",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Feature Products"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Main blog",
-      "settings": {}
-    }
-  ]
-}
+  {
+    "name": "Main blog",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "article",
+        "id": "featured_article",
+        "label": "Select Default Article"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Feature Products"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Main blog",
+        "settings": {}
+      }
+    ]
+  }
 {% endschema %}
