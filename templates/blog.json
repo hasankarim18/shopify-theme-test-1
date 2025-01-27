@@ -35,13 +35,20 @@
           "settings": {
             "product": "black-bean-bag"
           }
+        },
+        "product_UTDQpX": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
         }
       },
       "block_order": [
         "product_D6Tn4z",
         "product_cLBjRN",
         "product_qedKP4",
-        "product_YJJjTf"
+        "product_YJJjTf",
+        "product_UTDQpX"
       ],
       "settings": {
         "featured_article": "discounts/discount-of-the-year"
