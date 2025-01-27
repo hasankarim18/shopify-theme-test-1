@@ -5,3 +5,5 @@ READMD.md
 tailwind.config.js
 .vscode
 .vscode/settings.json
+src/input.css
+./src/input.css
